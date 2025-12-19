@@ -1,0 +1,75 @@
+{% extends 'knitting/base.html' %}
+
+{% block title %}Уроки вязания{% endblock %}
+
+{% block content %}
+<h2 style="color: #667eea; margin-bottom: 30px; text-align: center;">📚 Уроки вязания</h2>
+
+<div style="text-align: center; margin-bottom: 40px; padding: 20px; background: #edf2f7; border-radius: 10px;">
+    <p style="font-size: 1.1em; color: #2d3748;">
+        Обучайтесь вязанию с нашими подробными уроками! От основ до продвинутых техник.
+    </p>
+</div>
+
+{% if tutorials %}
+<div class="grid">
+    {% for tutorial in tutorials %}
+    <div class="card">
+        <h3>{{ tutorial.title }}</h3>
+        <p style="margin: 15px 0; line-height: 1.6;">{{ tutorial.content|truncatewords:30 }}</p>
+        
+        <div style="margin-top: 15px;">
+            <span class="badge badge-info">⏱️ {{ tutorial.duration }} мин</span>
+            {% if tutorial.video_url %}
+                <span class="badge" style="background: #e53e3e; color: white;">📹 Видео</span>
+            {% endif %}
+        </div>
+        
+        {% if tutorial.video_url %}
+        <div style="margin-top: 15px;">
+            <a href="{{ tutorial.video_url }}" target="_blank" style="display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 8px;">
+                Смотреть видео
+            </a>
+        </div>
+        {% endif %}
+        
+        <p style="color: #718096; font-size: 0.9em; margin-top: 15px; padding-top: 15px; border-top: 2px solid #e2e8f0;">
+            Опубликовано: {{ tutorial.created_at|date:"d.m.Y" }}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="text-align: center; padding: 60px; background: #f7fafc; border-radius: 15px; margin-top: 30px;">
+    <h3 style="color: #718096; margin-bottom: 20px;">Уроки скоро появятся!</h3>
+    <p style="color: #a0aec0;">Мы работаем над созданием обучающих материалов.</p>
+    <p style="color: #a0aec0; margin-top: 10px;">Добавьте уроки через админ-панель.</p>
+    <a href="/admin/" style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #667eea; color: white; text-decoration: none; border-radius: 8px;">Перейти в админ-панель</a>
+</div>
+{% endif %}
+
+<div style="margin-top: 50px;">
+    <div class="grid">
+        <div style="padding: 25px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 15px; color: white;">
+            <h3 style="margin-bottom: 10px;">🌟 Для начинающих</h3>
+            <p>Изучите базовые петли, набор петель и закрытие вязания. Это основа для всех будущих проектов!</p>
+        </div>
+        
+        <div style="padding: 25px; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); border-radius: 15px; color: white;">
+            <h3 style="margin-bottom: 10px;">🎓 Продвинутые техники</h3>
+            <p>Освойте сложные узоры, косы, ажуры и цветное вязание для создания уникальных изделий.</p>
+        </div>
+        
+        <div style="padding: 25px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 15px; color: #2d3748;">
+            <h3 style="margin-bottom: 10px;">🎨 Творческие проекты</h3>
+            <p>Создавайте свитера, шапки, шарфы, игрушки и многое другое, используя полученные навыки!</p>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 40px; padding: 25px; background: #4a5568; border-radius: 15px; color: white; text-align: center;">
+    <h3 style="margin-bottom: 15px;">💬 Нужна помощь?</h3>
+    <p>Если у вас возникли вопросы по урокам, посмотрите схемы вязания или обратитесь к администратору.</p>
+    <a href="/patterns/" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: white; color: #4a5568; text-decoration: none; border-radius: 8px; font-weight: bold;">Смотреть схемы</a>
+</div>
+{% endblock %}

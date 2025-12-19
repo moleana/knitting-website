@@ -1,0 +1,64 @@
+{% extends 'knitting/base.html' %}
+
+{% block title %}Главная - Мастерская Вязания{% endblock %}
+
+{% block content %}
+<h2 style="color: #667eea; margin-bottom: 30px; text-align: center;">Добро пожаловать в мир вязания!</h2>
+
+<div style="text-align: center; margin-bottom: 40px; padding: 20px; background: #edf2f7; border-radius: 10px;">
+    <p style="font-size: 1.2em; color: #2d3748;">
+        Здесь вы найдете лучшие схемы вязания, уроки для начинающих и продвинутых мастеров, 
+        а также всю необходимую информацию о пряже и инструментах! 🎨
+    </p>
+</div>
+
+<h3 style="color: #667eea; margin-top: 30px; margin-bottom: 20px;">📐 Популярные схемы вязания</h3>
+{% if patterns %}
+<div class="grid">
+    {% for pattern in patterns %}
+    <div class="card">
+        <h3>{{ pattern.title }}</h3>
+        <p>{{ pattern.description|truncatewords:20 }}</p>
+        <div style="margin-top: 15px;">
+            {% if pattern.difficulty == 'easy' %}
+                <span class="badge badge-easy">Легко</span>
+            {% elif pattern.difficulty == 'medium' %}
+                <span class="badge badge-medium">Средне</span>
+            {% else %}
+                <span class="badge badge-hard">Сложно</span>
+            {% endif %}
+            <span class="badge badge-info">{{ pattern.yarn_type }}</span>
+        </div>
+        <p style="margin-top: 10px; color: #718096;"><strong>Спицы:</strong> {{ pattern.needle_size }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p style="text-align: center; color: #718096; padding: 40px;">Пока нет схем. Добавьте их через админ-панель!</p>
+{% endif %}
+
+<h3 style="color: #667eea; margin-top: 40px; margin-bottom: 20px;">🧵 Пряжа в наличии</h3>
+{% if yarns %}
+<div class="grid">
+    {% for yarn in yarns %}
+    <div class="card">
+        <h3>{{ yarn.name }}</h3>
+        <p><strong>Состав:</strong> {{ yarn.composition }}</p>
+        <p><strong>Толщина:</strong> {{ yarn.thickness }}</p>
+        <p style="font-size: 1.5em; color: #48bb78; margin-top: 10px;"><strong>{{ yarn.price }} ₽</strong></p>
+        {% if yarn.in_stock %}
+            <span class="badge badge-easy">В наличии</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p style="text-align: center; color: #718096; padding: 40px;">Информация о пряже скоро появится!</p>
+{% endif %}
+
+<div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 15px; color: white;">
+    <h3 style="margin-bottom: 15px;">Начните свой путь в вязании уже сегодня!</h3>
+    <p>Переходите в раздел уроков и изучайте новые техники</p>
+    <a href="/tutorials/" style="display: inline-block; margin-top: 20px; padding: 15px 30px; background: white; color: #f5576c; text-decoration: none; border-radius: 8px; font-weight: bold;">Смотреть уроки</a>
+</div>
+{% endblock %}

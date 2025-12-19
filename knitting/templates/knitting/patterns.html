@@ -1,0 +1,56 @@
+{% extends 'knitting/base.html' %}
+
+{% block title %}Схемы вязания{% endblock %}
+
+{% block content %}
+<h2 style="color: #667eea; margin-bottom: 30px; text-align: center;">📐 Схемы вязания</h2>
+
+<div style="text-align: center; margin-bottom: 40px; padding: 20px; background: #edf2f7; border-radius: 10px;">
+    <p style="font-size: 1.1em; color: #2d3748;">
+        Коллекция лучших схем для вязания спицами и крючком. От простых до сложных узоров!
+    </p>
+</div>
+
+{% if patterns %}
+<div class="grid">
+    {% for pattern in patterns %}
+    <div class="card">
+        <h3>{{ pattern.title }}</h3>
+        <p style="margin: 15px 0; line-height: 1.6;">{{ pattern.description }}</p>
+        
+        <div style="margin-top: 15px;">
+            {% if pattern.difficulty == 'easy' %}
+                <span class="badge badge-easy">Легко 🌟</span>
+            {% elif pattern.difficulty == 'medium' %}
+                <span class="badge badge-medium">Средне 🌟🌟</span>
+            {% else %}
+                <span class="badge badge-hard">Сложно 🌟🌟🌟</span>
+            {% endif %}
+        </div>
+        
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #e2e8f0;">
+            <p style="color: #4a5568;"><strong>📌 Тип пряжи:</strong> {{ pattern.yarn_type }}</p>
+            <p style="color: #4a5568;"><strong>🎯 Размер спиц:</strong> {{ pattern.needle_size }}</p>
+            <p style="color: #718096; font-size: 0.9em; margin-top: 10px;">
+                Добавлено: {{ pattern.created_at|date:"d.m.Y" }}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="text-align: center; padding: 60px; background: #f7fafc; border-radius: 15px; margin-top: 30px;">
+    <h3 style="color: #718096; margin-bottom: 20px;">Схемы еще не добавлены</h3>
+    <p style="color: #a0aec0;">Зайдите в админ-панель, чтобы добавить новые схемы вязания!</p>
+    <a href="/admin/" style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #667eea; color: white; text-decoration: none; border-radius: 8px;">Перейти в админ-панель</a>
+</div>
+{% endif %}
+
+<div style="margin-top: 50px; padding: 25px; background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); border-radius: 15px;">
+    <h3 style="color: #2d3748; margin-bottom: 10px;">💡 Совет для начинающих</h3>
+    <p style="color: #2d3748;">
+        Начинайте с простых схем (уровень "Легко"), постепенно переходя к более сложным узорам. 
+        Не забудьте посмотреть наши уроки для лучшего понимания техник!
+    </p>
+</div>
+{% endblock %}

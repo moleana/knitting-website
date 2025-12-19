@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Вязание - Мастерская{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            background: #4a5568;
+            padding: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 40px;
+            min-height: 400px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+
+        .badge-easy { background: #48bb78; color: white; }
+        .badge-medium { background: #ed8936; color: white; }
+        .badge-hard { background: #f56565; color: white; }
+        .badge-info { background: #4299e1; color: white; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧶 Мастерская Вязания 🧶</h1>
+            <p>Ваш путеводитель в мир вязания</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/patterns/">Схемы вязания</a></li>
+                <li><a href="/tutorials/">Уроки</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Мастерская Вязания. Создано с любовью к рукоделию ❤️</p>
+        </footer>
+    </div>
+</body>
+</html>
